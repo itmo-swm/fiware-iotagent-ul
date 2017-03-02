@@ -23,8 +23,10 @@
 var config = {};
 
 config.mqtt = {
-    host: 'mosquitto',
-    port: 1883
+    host: '192.168.1.199',
+    port: 1883,
+    username: 'admin',
+    password: 'admin'
 };
 
 config.http = {
@@ -35,7 +37,7 @@ config.iota = {
     logLevel: 'DEBUG',
     timestamp: true,
     contextBroker: {
-        host: 'orion',
+        host: '192.168.1.199',
         port: '1026'
     },
     server: {
@@ -52,7 +54,7 @@ config.iota = {
     types: {},
     service: 'howtoService',
     subservice: '/howto',
-    providerUrl: 'http://localhost:4041',
+    providerUrl: 'http://192.168.1.199:4041',
     deviceRegistrationDuration: 'P1M',
     defaultType: 'Thing'
 };

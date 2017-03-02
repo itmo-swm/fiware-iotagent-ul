@@ -28,35 +28,36 @@ ARG NODEJS_VERSION=
 COPY . /opt/iotaul/
 WORKDIR /opt/iotaul
 
-RUN yum update -y && \
-  yum install -y epel-release && yum update -y epel-release && \
+RUN yum install -y epel-release && yum update -y && \
   echo "INFO: Building node and npm..." && \
-  yum install -y gcc-c++ make yum-utils git && \
+  #yum install -y gcc-c++ make yum-utils git && \
   # If we not define node version, use the official for the SO
-  [[ "${NODEJS_VERSION}" == "" ]] && export NODEJS_VERSION="$(repoquery --qf '%{VERSION}' nodejs.x86_64)" || echo "INFO: Using specific node version..." && \
-  echo "***********************************************************" && \
-  echo "USING NODEJS VERSION <${NODEJS_VERSION}>" && \
-  echo "***********************************************************" && \
-  curl -s --fail http://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}.tar.gz -o /opt/node-v${NODEJS_VERSION}.tar.gz && \
-  tar zxf /opt/node-v${NODEJS_VERSION}.tar.gz -C /opt && \
-  cd /opt/node-v${NODEJS_VERSION} && \
-  echo "INFO: Configure..." && ./configure && \
-  echo "INFO: Make..." && make -s V= && \
-  echo "INFO: Make install..." && make install && \
-  echo "INFO: node version <$(node -e "console.log(process.version)")>" && \
-  echo "INFO: npm version <$(npm --version)>" && \
-  echo "INFO: npm install --production..." && \
+  #[[ "${NODEJS_VERSION}" == "" ]] && export NODEJS_VERSION="$(repoquery --qf '%{VERSION}' nodejs.x86_64)" || echo "INFO: Using specific node version..." && \
+  #echo "***********************************************************" && \
+  #echo "USING NODEJS VERSION <${NODEJS_VERSION}>" && \
+  #echo "***********************************************************" && \
+#  curl -s --fail http://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}.tar.gz -o /opt/node-v${NODEJS_VERSION}.tar.gz && \
+#  tar zxf /opt/node-v${NODEJS_VERSION}.tar.gz -C /opt && \
+#  cd /opt/node-v${NODEJS_VERSION} && \
+#  echo "INFO: Configure..." && ./configure && \
+#  echo "INFO: Make..." && make -s V= && \
+#  echo "INFO: Make install..." && make install && \
+#  echo "INFO: node version <$(node -e "console.log(process.version)")>" && \
+#  echo "INFO: npm version <$(npm --version)>" && \
+#  echo "INFO: npm install --production..." && \
+  curl --silent --location https://rpm.nodesource.com/setup | bash - && \
+  yum -y install nodejs npm git&& \
   cd /opt/iotaul && npm install --production && \
   echo "INFO: Cleaning unused software..." && \
-  yum erase -y gcc-c++ gcc ppl cpp glibc-devel glibc-headers kernel-headers libgomp libstdc++-devel mpfr libss yum-utils libxml2-python git && \
-  rm -rf /opt/node-v${NODEJS_VERSION}.tar.gz /opt/node-v${NODEJS_VERSION} && \
+  #yum erase -y gcc-c++ gcc ppl cpp glibc-devel glibc-headers kernel-headers libgomp libstdc++-devel mpfr libss yum-utils libxml2-python git && \
+  #rm -rf /opt/node-v${NODEJS_VERSION}.tar.gz /opt/node-v${NODEJS_VERSION} && \
   # Erase without dependencies of the document formatting system (man). This cannot be removed using yum 
   # as yum uses hard dependencies and doing so will uninstall essential packages
-  rpm -qa groff redhat-logos | xargs -r rpm -e --nodeps && \
+  #rpm -qa groff redhat-logos | xargs -r rpm -e --nodeps && \
   # Clean yum data
-  yum clean all && rm -rf /var/lib/yum/yumdb && rm -rf /var/lib/yum/history && \
+  #yum clean all && rm -rf /var/lib/yum/yumdb && rm -rf /var/lib/yum/history && \
   # Rebuild rpm data files
-  rpm -vv --rebuilddb && \
+  #rpm -vv --rebuilddb && \
   # Delete unused locales. Only preserve en_US and the locale aliases
   find /usr/share/locale -mindepth 1 -maxdepth 1 ! -name 'en_US' ! -name 'locale.alias' | xargs -r rm -r && \
   bash -c 'localedef --list-archive | grep -v -e "en_US" | xargs localedef --delete-from-archive' && \

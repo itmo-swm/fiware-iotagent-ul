@@ -206,7 +206,7 @@ config.iota = {
     /**
      * Default type, for IOTA installations that won't require preregistration.
      */
-    defaultType: 'Thing'
+    defaultType: 'ThingUL'
 };
 
 /**

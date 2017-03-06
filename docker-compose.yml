@@ -13,7 +13,7 @@ services:
   volumes:
    - "./config-blank.js:/opt/iotaul/config-blank.js"
  mongo:
-  image: mongo:3.2
+  image: 'bitnami/mongodb'
+  restart: always
   volumes:
-   - "./db/mongo/:/data/db"
-  command: --nojournal
+   - "./db/mongo/:/bitnami/db"

@@ -31,7 +31,8 @@ This project is part of [FIWARE](https://www.fiware.org/). Check also the [FIWAR
 
 ## <a name="running"/> Running
 
-```docker-compose up -d
+```bash
+docker-compose up -d
 ```
 
 ## <a name="apioverview"/> API Overview

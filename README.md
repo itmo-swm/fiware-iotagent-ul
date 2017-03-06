@@ -29,8 +29,10 @@ Additional information about operating the component can be found in the [Operat
 
 This project is part of [FIWARE](https://www.fiware.org/). Check also the [FIWARE Catalogue entry for the IoTAgents](http://catalogue.fiware.org/enablers/backend-device-management-idas)
 
-## <a name="installation"/> Installation
-Information about how to install the UL IoTAgent can be found at the corresponding section of the [Installation & Administration Guide](docs/installationguide.md).
+## <a name="running"/> Running
+
+```docker-compose up -d
+```
 
 ## <a name="apioverview"/> API Overview
 

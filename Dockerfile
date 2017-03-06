@@ -79,5 +79,5 @@ RUN yum install -y epel-release && yum update -y && \
   # Don't need old log files inside docker images
   rm -f /var/log/*log
 
-ENTRYPOINT bin/iotagent-ul config-blank.js
+ENTRYPOINT sleep 10 && bin/iotagent-ul config-blank.js
 

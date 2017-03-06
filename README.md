@@ -32,6 +32,8 @@ This project is part of [FIWARE](https://www.fiware.org/). Check also the [FIWAR
 ## <a name="running"/> Running
 
 ```bash
+git clone https://github.com/itmo-swm/fiware-iotagent-ul
+cd fiware-iotagent-ul
 docker-compose up -d
 ```
 

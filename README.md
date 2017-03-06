@@ -43,26 +43,3 @@ An Overview of the API can be found in the [User & Programmers Manual](docs/user
 
 Apiary reference for the Configuration API can be found [here]().
 More information about IoTAgents and their APIs can be found in the IoTAgent Library [here](https://github.com/telefonicaid/iotagent-node-lib).
-
-## <a name="development"/> Development documentation
-
-Information about developing for the UL IoTAgent can be found at the corresponding section of the [User & Programmers Manual](docs/usermanual.md).
-
-## <a name="testing"/> Testing
-[Mocha](http://visionmedia.github.io/mocha/) Test Runner + [Chai](http://chaijs.com/) Assertion Library + [Sinon](http://sinonjs.org/) Spies, stubs.
-
-The test environment is preconfigured to run [BDD](http://chaijs.com/api/bdd/) testing style with
-`chai.expect` and `chai.should()` available globally while executing tests, as well as the [Sinon-Chai](http://chaijs.com/plugins/sinon-chai) plugin.
-
-Module mocking during testing can be done with [proxyquire](https://github.com/thlorenz/proxyquire)
-
-To run tests, type
-```bash
-grunt test
-```
-
-Tests reports can be used together with Jenkins to monitor project quality metrics by means of TAP or XUnit plugins.
-To generate TAP report in `report/test/unit_tests.tap`, type
-```bash
-grunt test-report
-```
